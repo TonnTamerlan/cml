@@ -20,7 +20,10 @@ public class IPv4 {
 	 * @return true - if the string is IP address in dot-decimal notation, otherwise return false
 	 */
 	public static boolean isIPv4InDotDecimal(String ip) {
-		return ip.matches(IPv4_REG_EXP);
+		if(ip == null) {
+		    return false;
+		}
+	    return ip.matches(IPv4_REG_EXP);
 	}
 	
 	/**
