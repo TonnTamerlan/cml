@@ -5,7 +5,7 @@ About
 "RESTful GeoIP Web Service" is a web service for fetching data about ip-adress like a country, region, coordinates, etc.
 
 ### Prepare to run
-#### Database
+##### Database
 Web service uses data from  https://lite.ip2location.com/ – DB5.LITE. IPv4 
 
 You need to download csv file with data and to load them to the database. MySQL is used as a database.
@@ -40,3 +40,16 @@ LINES TERMINATED BY '\r\n'
 IGNORE 0 LINES
 (ip_from, ip_to, country_code, country_name, region_name, city_name, latitude, longitude);
 ```
+###### Authentication data
+
+The data with username and password for connection to the database is stored in application.properties file (src/main/resources)
+
+##### Compile
+
+The project is the maven project. For installing run in command line
+
+```
+mvn install
+```
+
+
