@@ -23,7 +23,9 @@ CREATE TABLE `ip2location_db5`(
 	`region_name` VARCHAR(128),
 	`city_name` VARCHAR(128),
 	`latitude` DOUBLE,
-	`longitude` DOUBLE
+	`longitude` DOUBLE,
+	INDEX `idx_ip_from` (`ip_from`),
+	INDEX `idx_ip_to` (`ip_to`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ```
 ###### Import the database
