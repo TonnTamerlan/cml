@@ -20,10 +20,17 @@ import com.cmlteam.geoip.utils.IPv4;
 @RestController
 public class IpController {
 	
-	@Autowired
-	private IpGeoInformationService ipService;
+	private final IpGeoInformationService ipService;
 	
-	@RequestMapping("/geoip/{ip}")
+	
+	@Autowired
+	public IpController(IpGeoInformationService ipService) {
+        this.ipService = ipService;
+    }
+
+
+
+    @RequestMapping("/geoip/{ip}")
 	public IpGeoInformation getGeoInformation(@PathVariable String ip) {
         if (!IPv4.isIPv4InDotDecimal(ip)) {
             String errorMessage = ip + " is not valid IPv4 address";

@@ -11,14 +11,14 @@ import lombok.Data;
 @Data
 public class IpGeoInformation {
     
-    private String canonicalIPv4Representation;
-    private String cityName;
-    private String countryCode;
-    private String countryName;
-    private String IPv4;
-    private String latitude;
-    private String longitude;
-    private String regionName;
+    private final String canonicalIPv4Representation;
+    private final String cityName;
+    private final String countryCode;
+    private final String countryName;
+    private final String IPv4;
+    private final String latitude;
+    private final String longitude;
+    private final String regionName;
     
     
     public IpGeoInformation(String canonicalIPv4Representation, String cityName, String countryCode, String countryName,
@@ -28,7 +28,7 @@ public class IpGeoInformation {
         this.cityName = cityName;
         this.countryCode = countryCode;
         this.countryName = countryName;
-        IPv4 = Long.toString(iPv4);
+        this.IPv4 = Long.toString(iPv4);
         this.latitude = Double.toString(latitude);
         this.longitude = Double.toString(longitude);
         this.regionName = regionName;

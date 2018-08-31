@@ -19,10 +19,16 @@ import com.cmlteam.geoip.utils.IPv4;
 @Service
 public class IpGeoInformationService {
     
+    private final IpLocationRepository geoRepository;
+    
     @Autowired
-    private IpLocationRepository geoRepository;
-	
-	/**
+	public IpGeoInformationService(IpLocationRepository geoRepository) {
+        this.geoRepository = geoRepository;
+    }
+
+
+
+    /**
 	 * Getting geoinformation about specific ip address
 	 * 
 	 * @param ip - ip address in dot-decimal notation
@@ -38,7 +44,7 @@ public class IpGeoInformationService {
                     ipLocation.getCountryName(), ipInDecimal, ipLocation.getLatitude(), ipLocation.getLongitude(),
                     ipLocation.getRegionName()));
         } else {
-            return Optional.ofNullable(null);
+            return Optional.empty();
         }
 	}
 }
