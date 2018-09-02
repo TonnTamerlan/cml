@@ -32,15 +32,16 @@ public class IpGeoInformationService {
 	 * Getting geoinformation about specific ip address
 	 * 
 	 * @param ip - ip address in dot-decimal notation
-	 * @return {@link Optional} with information? or whith <code>null</code> if information was not found
+	 * @return {@link Optional} with information? or with <code>null</code> if information was not found
 	 */
 	public Optional<IpGeoInformation> getGeoInformationByIp(String ip)  {
-	    long ipInDecimal = IPv4.convertToDecimal(ip);
+	    long ipInDecimal = IPv4.fromDotDecimalToDecimal(ip);
 	    Optional<IpLocation> optional = geoRepository.getGeoLocationByIp(ipInDecimal);
 	    
         if (optional.isPresent()) {
             IpLocation ipLocation = optional.get();
-            return Optional.of(new IpGeoInformation(ip, ipLocation.getCityName(), ipLocation.getCountryCode(),
+            
+            return Optional.of(new IpGeoInformation(IPv4.fromDecimalToDotDecimal(ipInDecimal), ipLocation.getCityName(), ipLocation.getCountryCode(),
                     ipLocation.getCountryName(), ipInDecimal, ipLocation.getLatitude(), ipLocation.getLongitude(),
                     ipLocation.getRegionName()));
         } else {

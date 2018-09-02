@@ -32,12 +32,13 @@ public class IpController {
 
     @RequestMapping("/geoip/{ip}")
 	public IpGeoInformation getGeoInformation(@PathVariable String ip) {
-        if (!IPv4.isIPv4InDotDecimal(ip)) {
+        try {
+            return ipService.getGeoInformationByIp(ip)
+                    .orElseThrow(() -> new NotFoundException("Information about " + ip + " is not found"));
+        } catch (IllegalArgumentException e) {
             String errorMessage = ip + " is not valid IPv4 address";
-            throw new NotValidRequestException(errorMessage);
+            throw new NotValidRequestException(errorMessage, e);
         }
-        
-        return ipService.getGeoInformationByIp(ip).orElseThrow(()->new NotFoundException("Information about " + ip + " is not found"));
 	    
 	}
 
